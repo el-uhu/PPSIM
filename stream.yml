@@ -1,0 +1,3 @@
+stream:
+  - source-{preprocess}->preprocessed.csv
+  - preprocessed.csv-{extract}->timecourses_extracted.csv

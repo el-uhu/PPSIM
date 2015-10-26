@@ -1,0 +1,47 @@
+source:         path/to/sourcefile.txt
+sink:           path/to/sinkfolder
+headerpattern:  _MS\\d\\d\\d\\d_\\d\\d
+sampletypes:
+  Supernatant: S_MS\\d\\d\\d\\d_\\d\\d
+  Pellet:      P_MS\\d\\d\\d\\d_\\d\\d
+conditions:
+  - Control
+  - B55
+  - GWL
+crossmixes:
+  - CM
+experiment_ids::Array{AbstractString,1}
+timepoints:
+  T0 :    0
+  T2_5 :  2.5
+  T5 :    5
+  T7_5 :  7.7
+  T10 :   10
+  T20 :   20
+  T30 :   30
+  T45 :   45
+
+data_bindings:
+  
+
+
+
+plot_settings:
+  Control :
+    color : #5fbdff,
+    range : (findfirst(names(S), :Control_0)):(findfirst(names(S), :Control_45)),
+    error_range : (findfirst(names(S), :error_Control_x0_0)):(findfirst(names(S), :error_Control_x45_0))
+  B55 :
+    color : #ffc900,
+    range : (findfirst(names(S), :B55_0)):(findfirst(names(S), :B55_45)),
+    error_range : (findfirst(names(S), :error_B55_x0_0)):(findfirst(names(S), :error_B55_x45_0))
+  GWL :
+    color : #5fbd00,
+    range : (findfirst(names(S), :GWL_0)):(findfirst(names(S), :GWL_45)),
+    error_range : (findfirst(names(S), :error_GWL_x0_0)):(findfirst(names(S), :error_GWL_x45_0))
+
+pipeline:
+  - generate_logfile
+  - pre_process
+  - import_data
+  - fit_timecourses
