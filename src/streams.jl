@@ -17,8 +17,10 @@ function load_streams(streamfile::AbstractString)
 end
 
 function evaluate(S::Stream)
-
-  eval(parse("$(S.process)(\"$(S.source)\", \"$(S.sink)\")"))
+  source = S.source
+  sink = S.sink
+  process = S.process
+  eval(:(parse("$process")(source, sink)))
 end
 
 function copyfile(infile, outfile)

@@ -6,7 +6,8 @@ type Specifications
   conditions::Array{AbstractString, 1}
   crossmixes::Array{AbstractString,1}
   experiment_ids::Array{AbstractString,1}
-  timepoints::Dict{AbstractString, Float64}
+  timepoints::Dict{AbstractString, Any}
+  include::Array{AbstractString,1}
 end
 
 function load_specifications(projectfolder)
@@ -19,6 +20,7 @@ function load_specifications(projectfolder)
   crossmixes = S["crossmixes"]
   experiment_ids = S["experiment_ids"]
   timepoints = S["timepoints"]
-  specs = Specifications(source, sink, headerpattern, sampletypes, conditions, crossmixes, experiment_ids, timepoints)
+  include = S["include"]
+  specs = Specifications(source, sink, headerpattern, sampletypes, conditions, crossmixes, experiment_ids, timepoints, include)
   return(specs)
 end
