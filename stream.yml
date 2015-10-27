@@ -1,3 +1,0 @@
-stream:
-  - table.csv-{preprocess}->preprocessed.csv
-  - preprocessed.csv-{extract}->timecourses_extracted.csv

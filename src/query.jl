@@ -36,3 +36,24 @@ function queryColumns(pattern, col_names; logic = "", level = "outer")
     return(matches)
 end
 queryColumns(pattern, table::DataFrame; logic = "", level = "outer") = queryColumns(pattern, String[string(name) for name in names(table)]; logic = logic, level = level)
+
+#Convert a string of booleans to an array of 0 and 1
+function convertPattern(a::AbstractString)
+    pat = []
+    for c in a
+        if c == '0'
+            pat = [pat; [0]]
+        elseif c == '1'
+            pat = [pat; [1]]
+        end
+    end
+    return(pat)
+end
+#Convert an array of 0 and 1 to a string of booleans
+function convertPattern(a::DataArray{Bool})
+    pat = ""
+    for c in a
+        pat = pat * string(convert(Int, c))
+    end
+    return(pat)
+end

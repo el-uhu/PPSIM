@@ -4,5 +4,6 @@ function initialise(projectfolder)
     include(joinpath(projectfolder, i))
   end
   global streams = load_streams(joinpath(projectfolder, "stream.yml"))
-  return(specs, streams)
+  global model = load_model(joinpath(projectfolder, "model.yml"))
+  return(specs, streams, model)
 end
